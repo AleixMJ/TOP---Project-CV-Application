@@ -1,0 +1,15 @@
+.general-container {
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 20px;
+    
+}
+
+.general-container h2 {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.general-container input {
+    margin: 0 15px 0 5px;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/General.css';
 
 export default function General() {
     const [details, setDetails] = useState({
@@ -10,8 +11,8 @@ export default function General() {
     }
 
     return (
-    <>
-        <h1>General Information</h1>
+    <div className="general-container">
+        <h2>General Information</h2>
         <label>
             First Name:
             <input
@@ -44,6 +45,6 @@ export default function General() {
                 onChange={handleChange}
             />
         </label>
-    </>
+    </div>
     )
 }

@@ -32,6 +32,7 @@ export default function General() {
         <label>
             Email:
             <input
+                type='email'
                 name="email"
                 value={details.email}
                 onChange={handleChange}

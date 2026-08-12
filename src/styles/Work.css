@@ -1,0 +1,16 @@
+.work-container {
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 20px;
+    
+}
+
+.work-container h2 {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.work-container input {
+    margin: 0 15px 0 5px;
+}

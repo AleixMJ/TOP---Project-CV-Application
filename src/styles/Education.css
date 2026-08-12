@@ -1,0 +1,16 @@
+.education-container {
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 20px;
+    
+}
+
+.education-container h2 {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.education-container input {
+    margin: 0 15px 0 5px;
+}

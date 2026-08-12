@@ -3,7 +3,7 @@ import '../styles/Work.css';
 
 export default function Work() {
     const [details, setDetails] = useState({
-        title: '', company: '', description: '', location:''});
+        title: '', company: '', description: '', location:'', start:'', end:'current'});
 
     function handleChange(e) {
         const { name, value} = e.target;
@@ -11,7 +11,7 @@ export default function Work() {
     }
 
     return (
-        <div className="container-work">
+        <div className="work-container">
             <h2>Work Experience</h2>
             <div className='job-card'>
                 <div className='basic-info'>
@@ -29,6 +29,24 @@ export default function Work() {
                         <input 
                         type="text"
                         name="company"
+                        onChange={handleChange}
+                        value={details.value}                 
+                        />
+                    </label>
+                    <label>
+                        Start date: 
+                        <input 
+                        type="text"
+                        name="start"
+                        onChange={handleChange}
+                        value={details.value}                 
+                        />
+                    </label>
+                    <label>
+                        End date: 
+                        <input 
+                        type="text"
+                        name="start"
                         onChange={handleChange}
                         value={details.value}                 
                         />

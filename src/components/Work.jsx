@@ -2,24 +2,66 @@ import { useState } from 'react';
 import '../styles/Work.css';
 
 export default function Work() {
-    const [details, setDetails] = useState({
+    const [workList, setWorkList] = useState([{
+        id: crypto.randomUUID(),
         title: '',
         company: '',
         description: '',
         location:'',
         start:'',
-        end:'current'});
+        end:'current',
+        isEditing: true,
+        },
+    ]);
 
-    const [isEditing, setIsEditing] = useState(true);
 
-    function handleChange(e) {
+    function handleChange(e, id) {
         const { name, value} = e.target;
-        setDetails((prev) => ({...prev, [name]: value}))
+        setWorkList((prev) => 
+            prev.map((item) =>
+            item.id === id ? {...item, [name]: value} : item
+            )
+        );
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e, id) {
         e.preventDefault();
-        setIsEditing(false);
+
+        setWorkList((prev) =>
+            prev.map((item) =>
+            item.id === id ? {...item, isEditing: false} :item
+            )
+        );
+        
+    }
+
+    function handleEdit(id) {
+        setWorkList((prev) =>
+            prev.map((item) =>
+            item.id === id ? {...item, isEditing: true} :item
+            )
+        );
+        
+    }
+
+    function handleAdd() {
+        setWorkList((prev) => [
+            ...prev,
+            {
+            id: crypto.randomUUID(),
+            title: '',
+            company: '',
+            description: '',
+            location: '',
+            start: '',
+            end: 'current',
+            isEditing: true,
+            },
+        ]);
+    }
+
+    function handleDelete(id) {
+        setWorkList((prev) => prev.filter((item) => item.id !== id));
     }
 
     return (
@@ -27,17 +69,17 @@ export default function Work() {
         
         
             <h2>Work Experience</h2>
-
-            {isEditing ? (
-                <form className='job-card' onSubmit={handleSubmit}>
+            {workList.map((item) =>
+                item.isEditing ? (
+                <form key={item.id}className='job-card' onSubmit={ (e) => handleSubmit(e, item.id)}>
                     <div className='basic-info'>
                         <label>
                             Job Title: 
                             <input 
                             type="text"
                             name="title"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.title}                 
                             />
                         </label>
                         <label>
@@ -45,8 +87,8 @@ export default function Work() {
                             <input 
                             type="text"
                             name="company"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.company}                    
                             />
                         </label>
                         <label>
@@ -54,17 +96,17 @@ export default function Work() {
                             <input 
                             type="text"
                             name="start"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.start}                  
                             />
                         </label>
                         <label>
                             End date: 
                             <input 
                             type="text"
-                            name="start"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            name="end"
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.end}                    
                             />
                         </label>
                         <label>
@@ -72,8 +114,8 @@ export default function Work() {
                             <input 
                             type="text"
                             name="location"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.location}                   
                             />
                         </label>
                     </div>
@@ -82,29 +124,38 @@ export default function Work() {
                         <input 
                         type="text"
                         name="description"
-                        onChange={handleChange}
-                        value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.description}                    
                         />
                     </label>
                     <button type="submit" className='submit-btn'>Submit</button>
+                    <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}>
+                        Delete
+                    </button>
 
                 </form> 
             ) : ( 
-                <div className='job-card preview'>
-                    <h3>{details.title || 'Job Ttle'}</h3>
+                <div key={item.id} className='job-card preview'>
+                    <h3>{item.title || 'Job Ttle'}</h3>
                     <p className='company-location'>
-                        {details.company} {details.location && `| ${details.location}`}
+                        {item.company} {item.location && `| ${item.location}`}
                     </p>
                     <p className='dates'>
-                        {details.start} - {details.end}
+                        {item.start} - {item.end}
                     </p>
-                    <p className='description'>{details.description}</p>
-                    <button type="button" onClick={() => setIsEditing(true)}>
+                    <p className='description'>{item.description}</p>
+                    <button type="button" className="edit-btn" onClick={() => handleEdit(item.id)}>
                         Edit
                     </button>
+                    <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}>
+                        Delete
+                    </button>
                 </div>
-
-            )}
-        </div>
+            )    
+        )}
+        <button type="button" className='add-btn' onClick={handleAdd}>
+            + Add Experience
+        </button>
+    </div>   
     );
 }

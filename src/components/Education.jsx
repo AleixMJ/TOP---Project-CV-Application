@@ -2,53 +2,99 @@ import { useState } from 'react';
 import '../styles/Education.css';
 
 export default function Education() {
-    const [details, setDetails] = useState({
-        qualification: '', institution: '', description: '', location:'', graduation:'current'});
+    const [educationList, setEducationList] = useState([{
+        id: crypto.randomUUID(),
+        qualification: '',
+        institution: '',
+        description: '',
+        location:'',
+        graduation:'',
+        isEditing: true,
+        },
+    ]);
 
-    const [isEditing, setIsEditing] = useState(true);
 
-    function handleChange(e) {
+    function handleChange(e, id) {
         const { name, value} = e.target;
-        setDetails((prev) => ({...prev, [name]: value}))
+        setEducationList((prev) =>
+            prev.map((item) => item.id === id ? ({...item, [name]: value} ): item 
+            )
+        );
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e, id) {
         e.preventDefault();
-        setIsEditing(false);
+
+        setEducationList((prev) =>
+            prev.map((item) => item.id === id ? {...item, isEditing: false} : item
+            )
+    
+        );
+        
+    }
+
+        function handleEdit(id) {
+        setEducationList((prev) =>
+            prev.map((item) =>
+            item.id === id ? {...item, isEditing: true} :item
+            )
+        );
+        
+    }
+
+    function handleAdd() {
+        setEducationList((prev) => [
+            ...prev,
+            {
+            id: crypto.randomUUID(),
+            qualification: '',
+            institution: '',
+            description: '',
+            location:'',
+            graduation:'',
+            isEditing: true,
+            },
+        ]);
+    }
+
+    function handleDelete(id) {
+        setEducationList((prev) => prev.filter((item) => item.id !== id));
     }
 
     return (
         <div className="education-container">
-           
-                <h2>Education</h2>
-                 {isEditing ? (
-                <form className='education-card'>
+        
+        
+            <h2>Education</h2>
+            {educationList.map((item) =>
+                item.isEditing ? (
+                <form key={item.id}className='education-card' onSubmit={ (e) => handleSubmit(e, item.id)}>
                     <div className='basic-info'>
                         <label>
-                            Qualification: 
+                            Qualification:  
                             <input 
                             type="text"
                             name="qualification"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.qualification}                 
                             />
                         </label>
                         <label>
-                            Institution Name: 
+                            Institution: 
                             <input 
                             type="text"
                             name="institution"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.institution}                    
                             />
                         </label>
                         <label>
-                            Graduation Date: 
+                            Graduation date: 
                             <input 
                             type="text"
                             name="graduation"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.graduation}                  
                             />
                         </label>
                         <label>
@@ -56,33 +102,46 @@ export default function Education() {
                             <input 
                             type="text"
                             name="location"
-                            onChange={handleChange}
-                            value={details.value}                 
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.location}                    
                             />
                         </label>
                     </div>
-                        <label>
-                            Description: 
-                            <input 
-                            type="text"
-                            name="description"
-                            onChange={handleChange}
-                            value={details.value}                 
-                            />
-                        </label>
-                        <button type="submit" onClick={handleSubmit}>Submit</button>
-                </form>
-                ) : (
-                <div className='education-card preview'>
+                    <label>
+                        Description: 
+                        <input 
+                        type="text"
+                        name="description"
+                            onChange={ (e) => handleChange(e, item.id)}
+                            value={item.description}                    
+                        />
+                    </label>
+                    <button type="submit" className='submit-btn'>Submit</button>
+                    <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}>
+                        Delete
+                    </button>
+
+                </form> 
+            ) : ( 
+                <div key={item.id} className='education-card preview'>
                     <div className='education-title'>
-                        <h3>{details.qualification}</h3>
-                        <p>{details.graduation}</p>
+                        <h3>{item.qualification || 'Qualification'}</h3>
+                         <p>{item.graduation}</p>
                     </div>
-                    <p>{details.institution} {details.location && `, ${details.location}`}</p>
-                    <p>{details.description}</p>
-                    <button type="submit" onClick={() => setIsEditing(true)}>Edit</button>
+                    <p>{item.institution} {item.location && `, ${item.location}`}</p>   
+                    <p className='description'>{item.description}</p>
+                    <button type="button" className="edit-btn" onClick={() => handleEdit(item.id)}>
+                        Edit
+                    </button>
+                    <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}>
+                        Delete
+                    </button>
                 </div>
-                )}                      
-        </div>
-    )
+            )    
+        )}
+        <button type="button" className='add-btn' onClick={handleAdd}>
+            + Add Qualification
+        </button>
+    </div>   
+    );
 }

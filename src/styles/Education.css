@@ -30,3 +30,11 @@
   margin: 0 auto;
   text-align: left;
 }
+
+.education-card {
+    margin:20px;
+    background-color: rgb(54, 54, 98);
+    border-radius: 20px;
+    padding: 20px;
+    color:rgb(238, 236, 236)
+}

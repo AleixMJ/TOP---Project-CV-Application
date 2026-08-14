@@ -1,4 +1,4 @@
-import './App.css'
+import './styles/App.css'
 import General from './components/General.jsx'
 import Work from './components/Work.jsx'
 import Education from './components/Education.jsx'

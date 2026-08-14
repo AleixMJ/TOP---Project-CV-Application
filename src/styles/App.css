@@ -1,0 +1,285 @@
+/* src/styles/App.css */
+
+/* ---------------------------------- */
+/* 1. Shared Outer Containers         */
+/* ---------------------------------- */
+
+.section-container,
+.work-container,
+.education-container,
+.general-container {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 28px;
+  margin: 28px 0;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Color Accents per Section Header */
+h2 {
+  margin: 0 0 24px 0;
+  font-size: 21px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* General Info: Royal Blue Accent */
+.general-container h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 22px;
+  background-color: #2563eb;
+  border-radius: 3px;
+}
+
+/* Work Experience: Emerald Accent */
+.work-container h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 22px;
+  background-color: #059669;
+  border-radius: 3px;
+}
+
+/* Education: Purple Accent */
+.education-container h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 22px;
+  background-color: #7c3aed;
+  border-radius: 3px;
+}
+
+/* ---------------------------------- */
+/* 2. Colorful Inner Cards            */
+/* ---------------------------------- */
+
+.general-card {
+  background-color: #f0f6ff; /* Soft Blue Tint */
+  border: 1px solid #bfdbfe;
+  border-left: 5px solid #2563eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+}
+
+.job-card {
+  background-color: #ecfdf5; /* Soft Emerald Tint */
+  border: 1px solid #a7f3d0;
+  border-left: 5px solid #059669;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+}
+
+.education-card {
+  background-color: #f5f3ff; /* Soft Violet Tint */
+  border: 1px solid #ddd6fe;
+  border-left: 5px solid #7c3aed;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+}
+
+/* ---------------------------------- */
+/* 3. High-Contrast Inputs            */
+/* ---------------------------------- */
+
+.basic-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 20px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.basic-info label,
+form > label:not(.basic-info label) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1e293b;
+  text-align: left;
+}
+
+form > label:not(.basic-info label) {
+  margin-top: 12px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #94a3b8;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Input Focus Rings match their section colors */
+.general-card input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.job-card input:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+.education-card input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+/* ---------------------------------- */
+/* 4. Card Preview Mode (Submitted)   */
+/* ---------------------------------- */
+
+.job-card.preview,
+.education-card.preview,
+.general-preview {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 22px 26px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.job-card.preview h3,
+.education-card.preview h3,
+.general-preview h3 {
+  margin: 0 0 4px 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.education-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.company-location,
+.dates {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.description {
+  margin-top: 12px;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---------------------------------- */
+/* 5. Rich Action Buttons             */
+/* ---------------------------------- */
+
+button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 8px 6px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Submit & Save (Gradient Accent) */
+.submit-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.edit-btn {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.edit-btn:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #ffe4e6;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+
+.delete-btn:hover {
+  background-color: #fecdd3;
+  color: #be123c;
+}
+
+/* Add Button (Stylized CTA) */
+.add-btn {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 2px dashed #6ee7b7;
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.add-btn:hover {
+  background-color: #d1fae5;
+  border-color: #34d399;
+}
+
+/* ---------------------------------- */
+/* 6. Responsive Media Queries        */
+/* ---------------------------------- */
+
+@media (max-width: 768px) {
+  .basic-info {
+    grid-template-columns: 1fr;
+  }
+
+  .section-container,
+  .work-container,
+  .education-container,
+  .general-container {
+    padding: 20px 16px;
+  }
+}

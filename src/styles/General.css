@@ -1,16 +1,18 @@
-.general-container {
-    background-color: lightblue;
-    padding: 30px;
-    border-radius: 20px;
-    margin: 20px;
-    
+/* General.css*/
+
+.general-preview {
+  text-align: center;
+  padding: 10px 0;
 }
 
-.general-container h2 {
-    margin: 10px;
-    font-weight: bold;
+.general-preview h1 {
+  margin-bottom: 8px;
 }
 
-.general-container input {
-    margin: 0 15px 0 5px;
+.contact-info-line {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  color: var(--text);
+  font-size: 14px;
 }

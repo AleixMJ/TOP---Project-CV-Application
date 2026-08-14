@@ -1,40 +1,14 @@
 /* Education.css*/
 
-.education-container {
-    background-color: lightblue;
-    padding: 30px;
-    border-radius: 20px;
-    margin: 20px;
-    
-}
-
-.education-container h2 {
-    margin: 10px;
-    font-weight: bold;
-}
-
-.education-container input {
-    margin: 0 15px 0 5px;
-}
-
 .education-title {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 400px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
 }
 
-.preview {
-  max-width: 400px; 
-  margin: 0 auto;
-  text-align: left;
-}
-
-.education-card {
-    margin:20px;
-    background-color: rgb(54, 54, 98);
-    border-radius: 20px;
-    padding: 20px;
-    color:rgb(238, 236, 236)
+.education-title h3 {
+  margin: 0;
 }

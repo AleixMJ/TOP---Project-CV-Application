@@ -271,6 +271,54 @@ button {
 /* 6. Responsive Media Queries        */
 /* ---------------------------------- */
 
+
+/* ---------------------------------- */
+/* Top Header Bar & Download Button   */
+/* ---------------------------------- */
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Primary Green Action Button */
+.download-btn {
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 768px) {
   .basic-info {
     grid-template-columns: 1fr;
